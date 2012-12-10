@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'rubygems'
 system('gem install octokit 1.19.0')
 Gem.clear_paths
 require 'octokit'
