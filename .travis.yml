@@ -4,7 +4,7 @@ rvm:
 install:
   - echo '"install" phase'
 script:
-  - export VEEWEEBOT_DEPLOY_REPO_URL=http://github.com/`echo `cd .. && echo ${PWD##*/}``/`echo ${PWD##*/}`
+  - export VEEWEEBOT_DEPLOY_REPO_URL=http://github.com/`echo \`cd .. && echo ${PWD##*/}\``/`echo ${PWD##*/}`
   - export VEEWEEBOT_DEPLOY_FILE=blahblah.txt
   - export VEEWEEBOT_DEPLOY_OAUTH_USERNAME=veeweebot_username
   - export VEEWEEBOT_DEPLOY_OAUTH_TOKEN=veeweebot_token
