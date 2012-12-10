@@ -5,12 +5,9 @@ require 'rubygems/dependency_installer'
 Gem::DependencyInstaller.new.install('octokit', '1.19.0')
 require 'octokit'
 
-puts Octokit.downloads(:username => ENV['VEEWEEBOT_DEPLOY_REPO_USERNAME'], :name => ENV['VEEWEEBOT_DEPLOY_REPO_NAME'])
-
-puts 'start'
-puts ENV['VEEWEEBOT_DEPLOY_FILE']
-puts ENV['VEEWEEBOT_DEPLOY_REPO_USERNAME']
-puts ENV['VEEWEEBOT_DEPLOY_REPO_NAME']
-puts ENV['VEEWEEBOT_DEPLOY_OAUTH_USERNAME']
-puts ENV['VEEWEEBOT_DEPLOY_OAUTH_TOKEN']
-puts 'end'
+Octokit.downloads(:username => ENV['VEEWEEBOT_DEPLOY_REPO_USERNAME'], :name => ENV['VEEWEEBOT_DEPLOY_REPO_NAME']).each { |entry|
+  if ENV['VEEWEEBOT_DEPLOY_FILE'] == entry.name
+    client = Octokit::Client.new(:login => ENV['VEEWEEBOT_DEPLOY_OAUTH_USERNAME'], :oauth_token => ENV['VEEWEEBOT_DEPLOY_OAUTH_TOKEN'])
+    client.delete_download({:username => ENV['VEEWEEBOT_DEPLOY_REPO_USERNAME'], :name => ENV['VEEWEEBOT_DEPLOY_REPO_NAME']}, entry.id)
+  end
+}
