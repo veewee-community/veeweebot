@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-system('gem install octokit 1.19.0')
-Gem.clear_paths
+require 'rubygems/dependency_installer'
+Gem::DependencyInstaller.new.install(:name => 'octokit', :version => '1.19.0')
 require 'octokit'
 
 puts Octokit.downloads(:username => ENV['VEEWEEBOT_DEPLOY_REPO_USERNAME'], :name => ENV['VEEWEEBOT_DEPLOY_REPO_NAME'])
