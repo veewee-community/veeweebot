@@ -1,3 +1,8 @@
 #!/usr/bin/env ruby
 
-puts 'wow!'
+puts 'start'
+puts ENV['VEEWEEBOT_DEPLOY_REPO_URL']
+puts ENV['VEEWEEBOT_DEPLOY_FILE']
+puts ENV['VEEWEEBOT_DEPLOY_OAUTH_USERNAME']
+puts ENV['VEEWEEBOT_DEPLOY_OAUTH_TOKEN']
+puts 'end'
