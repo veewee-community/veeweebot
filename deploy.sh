@@ -23,7 +23,6 @@ client.downloads(repo).each { |entry|
   end
 }
 
-# TODO: fill in these fields with real values
 sha1 = Digest::SHA1.new
 File.open(FILE, 'r') do |file|
   while buffer = file.read(1024)
