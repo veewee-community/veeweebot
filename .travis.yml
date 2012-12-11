@@ -7,6 +7,9 @@ script:
   - export VEEWEEBOT_DEPLOY_REPO_USERNAME=`echo \`cd .. && echo ${PWD##*/}\``
   - export VEEWEEBOT_DEPLOY_REPO_NAME=`echo ${PWD##*/}`
   - export VEEWEEBOT_DEPLOY_FILE=binaryfile.blob
+  - export VEEWEEBOT_DEPLOY_BUILD_TIMESTAMP=`date`
+  - export VEEWEEBOT_DEPLOY_FILE_CONTENT_TYPE=application/octet-stream
+  - export VEEWEEBOT_DEPLOY_BUILD_URL=http://travis-ci.org/veewee-community/veeweebot/builds/$TRAVIS_BUILD_ID
   - export VEEWEEBOT_DEPLOY_OAUTH_USERNAME=veeweebot
   - ./deploy.sh
 env:
