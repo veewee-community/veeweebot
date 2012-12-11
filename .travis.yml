@@ -10,3 +10,6 @@ script:
   - export VEEWEEBOT_DEPLOY_OAUTH_USERNAME=veeweebot
   - export VEEWEEBOT_DEPLOY_OAUTH_TOKEN=veeweebot_token
   - ./deploy.sh
+env:
+  global:
+    - secure: "hFZemFQ58B8AAxmGKZVB6plUY6Hwgj18Kmv5uP313CD/RU2+5nz3VpIDKlXt\nun6Jnmf+K5njitLsL1/n7VyXTItC+lX/kXwC4UF4Te5lOi7wOMhrPBG28GOE\nN+y3mJRhtaUXevaTzR98sq7klS+4eJMIli3xSNHABELhSBzmAHg="
