@@ -8,7 +8,6 @@ script:
   - export VEEWEEBOT_DEPLOY_REPO_NAME=`echo ${PWD##*/}`
   - export VEEWEEBOT_DEPLOY_FILE=binaryfile.blob
   - export VEEWEEBOT_DEPLOY_OAUTH_USERNAME=veeweebot
-  - export VEEWEEBOT_DEPLOY_OAUTH_TOKEN=veeweebot_token
   - ./deploy.sh
 env:
   global:
