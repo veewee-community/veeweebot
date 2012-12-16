@@ -4,11 +4,14 @@ rvm:
 install:
   - echo '"install" phase'
 script:
-  - export VEEWEEBOT_DEPLOY_FILE=binaryfile.blob
+  - dd if=/dev/urandom of=vagrant.box bs=1M count=1
+  - export VEEWEEBOT_DEPLOY_FILE=vagrant.box
+  - export VEEWEEBOT_DEPLOY_FOLDER=public
+  - export VEEWEEBOT_DEPLOY_FILE_CONTENT_TYPE='application/octet-stream'
   - export VEEWEEBOT_DEPLOY_BUILD_TIMESTAMP=`date`
-  - export VEEWEEBOT_DEPLOY_FILE_CONTENT_TYPE=application/octet-stream
   - export VEEWEEBOT_DEPLOY_BUILD_URL=http://travis-ci.org/veewee-community/veeweebot/builds/$TRAVIS_BUILD_ID
   - ./deploy.sh
 env:
   global:
-    - secure: "hFZemFQ58B8AAxmGKZVB6plUY6Hwgj18Kmv5uP313CD/RU2+5nz3VpIDKlXt\nun6Jnmf+K5njitLsL1/n7VyXTItC+lX/kXwC4UF4Te5lOi7wOMhrPBG28GOE\nN+y3mJRhtaUXevaTzR98sq7klS+4eJMIli3xSNHABELhSBzmAHg="
+    - secure: "jZQwtsO/FWeTtE01OQTVjQUlk95oJj97ts1roeuVKHGlxDetNG2+IZ5i5fGe\nGeL2wyE1Atl1dMv1peW3IA11kd6tDobsdVqT/9Gp+2KXK1szOfukXE24L6it\njfRcaUxLpgMMcdaHiiVS2iy65KB/L5eJd/7UJkmI8vjM+kgRw/k="
+    - secure: "Y5N6fJLeU0Mi3xBmyviBfA52OUS7Hu9KCkM1gbVtr814Oq90a5H3FuQBPaFd\niTtU6QOVPPqgakA/N9ipboo7O2vytaYdpAprOL9k1VlinAIpdMaPs4zg1dYI\nHcTNTfCBRqN3iDbsSBwlTTMRIsdjLoLTTKNATOTpZMaxIsYRrVY="
