@@ -4,7 +4,7 @@ rvm:
 install:
   - echo '"install" phase'
 script:
-  - dd if=/dev/urandom of=vagrant.box bs=500M count=1
+  - dd if=/dev/urandom of=vagrant.box bs=250M count=1
   - export VEEWEEBOT_DEPLOY_FILE=vagrant.box
   - export VEEWEEBOT_DEPLOY_FOLDER=public
   - export VEEWEEBOT_DEPLOY_FILE_CONTENT_TYPE='application/octet-stream'
