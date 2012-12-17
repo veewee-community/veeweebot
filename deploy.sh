@@ -10,8 +10,8 @@ require 'google/api_client'
 FILE =            ENV['VEEWEEBOT_DEPLOY_FILE']
 FOLDER =          ENV['VEEWEEBOT_DEPLOY_FOLDER'] || 'boxes'
 CONTENT_TYPE =    ENV['VEEWEEBOT_DEPLOY_FILE_CONTENT_TYPE'] || 'application/octet-stream'
-BUILD_TIMESTAMP = ENV['VEEWEEBOT_DEPLOY_BUILD_TIMESTAMP'] || Time.now()
-BUILD_URL =       ENV['VEEWEEBOT_DEPLOY_BUILD_URL'] || "http://travis-ci.org/veewee-community/veeweebot/builds/#{ENV['TRAVIS_BUILD_ID']}"
+BUILD_TIMESTAMP = ENV['VEEWEEBOT_DEPLOY_BUILD_TIMESTAMP'] || `date`
+BUILD_URL =       ENV['VEEWEEBOT_DEPLOY_BUILD_URL'] || "http://travis-ci.org/`echo \`cd .. && echo ${PWD##*/}\``/`echo ${PWD##*/}`/builds/#{ENV['TRAVIS_BUILD_ID']}"
 CLIENT_SECRET =   ENV['VEEWEEBOT_GOOGLE_CLIENT_SECRET']
 REFRESH_TOKEN =   ENV['VEEWEEBOT_GOOGLE_REFRESH_TOKEN']
 
