@@ -36,9 +36,11 @@ client.authorization.access_token = ACCESS_TOKEN
 
 def get_id_of_existing_folder(client, drive)
   folder_id = nil
+  api_method = drive.children.list
+  puts "#{__method__}:#{api_method.id}"
   result = client.execute(
     # https://developers.google.com/drive/v2/reference/files/list
-    :api_method => drive.children.list,
+    :api_method => api_method,
     :parameters => {
       :folderId => 'root',
       # don't know why can't use '=' for matching title
@@ -46,7 +48,6 @@ def get_id_of_existing_folder(client, drive)
       :q => "(title contains '#{FOLDER}') and (mimeType = 'application/vnd.google-apps.folder') and (trashed = false)"
     }
   )
-  puts "#{__method__}:#{result.request.api_method.id}"
   # jj result.data.to_hash
   if result.status.between?(200, 299)
     items = result.data['items']
@@ -66,12 +67,13 @@ def create_folder(client, drive)
     :description => 'This folder was created by veeweebot.',
     :mimeType => 'application/vnd.google-apps.folder'
   })
+  api_method = drive.files.insert
+  puts "#{__method__}:#{api_method.id}"
   result = client.execute(
     # https://developers.google.com/drive/v2/reference/files/insert
-    :api_method => drive.files.insert,
+    :api_method => api_method,
     :body_object => folder
   )
-  puts "#{__method__}:#{result.request.api_method.id}"
   # jj result.data.to_hash
   if result.status.between?(200, 299)
     folder_id = result.data['id']
@@ -84,15 +86,16 @@ def create_folder(client, drive)
     'type' => 'anyone',
     'role' => 'reader'
   })
+  api_method = drive.permissions.insert
+  puts "#{__method__}:#{api_method.id}"
   result = client.execute(
     # https://developers.google.com/drive/v2/reference/permissions/insert
-    :api_method => drive.permissions.insert,
+    :api_method => api_method,
     :body_object => permission,
     :parameters => {
       'fileId' => folder_id
     }
   )
-  puts "#{__method__}:#{result.request.api_method.id}"
   # jj result.data.to_hash
   if !result.status.between?(200, 299)
     raise
@@ -102,16 +105,17 @@ end
 
 def get_id_of_existing_file(client, drive, folder_id)
   file_id = nil
+  api_method = drive.children.list
+  puts "#{__method__}:#{api_method.id}"
   result = client.execute(
     # https://developers.google.com/drive/v2/reference/files/list
-    :api_method => drive.children.list,
+    :api_method => api_method,
     :parameters => {
       :folderId => folder_id,
       # don't know why can't use '=' for matching title
       :q => "(title contains '#{FILE}') and (trashed = false)"
     }
   )
-  puts "#{__method__}:#{result.request.api_method.id}"
   # jj result.data.to_hash
   if result.status.between?(200, 299)
     items = result.data['items']
@@ -125,14 +129,15 @@ def get_id_of_existing_file(client, drive, folder_id)
 end
 
 def delete_file(client, drive, file_id)
+  api_method = drive.files.delete
+  puts "#{__method__}:#{api_method.id}"
   result = client.execute(
     # https://developers.google.com/drive/v2/reference/files/delete
-    :api_method => drive.files.delete,
+    :api_method => api_method,
     :parameters => {
       :fileId => file_id,
     }
   )
-  puts "#{__method__}:#{result.request.api_method.id}"
   # puts "result.status=#{result.status}"
   if !result.status.between?(200, 299)
     raise
@@ -159,16 +164,17 @@ def upload_file(client, drive, folder_id, file_description)
     ]
   })
   media = Google::APIClient::UploadIO.new(FILE, CONTENT_TYPE)
+  api_method = drive.files.insert
+  puts "#{__method__}:#{api_method.id}"
   result = client.execute(
     # https://developers.google.com/drive/v2/reference/files/insert
-    :api_method => drive.files.insert,
+    :api_method => api_method,
     :body_object => file,
     :media => media,
     :parameters => {
       'uploadType' => 'multipart',
       'alt' => 'json'
   })
-  puts "#{__method__}:#{result.request.api_method.id}"
   # jj result.data.to_hash
   if !result.status.between?(200, 299)
     raise
