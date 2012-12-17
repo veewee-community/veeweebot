@@ -6,10 +6,6 @@ install:
 script:
   - dd if=/dev/urandom of=vagrant.box bs=1M count=1
   - export VEEWEEBOT_DEPLOY_FILE=vagrant.box
-  - export VEEWEEBOT_DEPLOY_FOLDER=public
-  - export VEEWEEBOT_DEPLOY_FILE_CONTENT_TYPE='application/octet-stream'
-  - export VEEWEEBOT_DEPLOY_BUILD_TIMESTAMP=`date`
-  - export VEEWEEBOT_DEPLOY_BUILD_URL=http://travis-ci.org/veewee-community/veeweebot/builds/$TRAVIS_BUILD_ID
   - ./deploy.sh
 env:
   global:
