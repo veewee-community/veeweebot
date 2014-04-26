@@ -4,10 +4,10 @@ rvm:
 install:
   - echo '"install" phase'
 script:
-  - export VEEWEEBOT_DEPLOY_REPO_USERNAME=`echo \`cd .. && echo ${PWD##*/}\``
-  - export VEEWEEBOT_DEPLOY_REPO_NAME=`echo ${PWD##*/}`
-  - export VEEWEEBOT_DEPLOY_FILE=$VEEWEEBOT_DEPLOY_REPO_NAME.box
-  - export VEEWEEBOT_DEPLOY_OAUTH_USERNAME=veeweebot_username
-  - export VEEWEEBOT_DEPLOY_OAUTH_TOKEN=veeweebot_token
-  - printenv
+  - dd if=/dev/urandom of=vagrant.box bs=1M count=1
+  - export VEEWEEBOT_DEPLOY_FILE=vagrant.box
   - ./deploy.sh
+env:
+  global:
+    - secure: "jZQwtsO/FWeTtE01OQTVjQUlk95oJj97ts1roeuVKHGlxDetNG2+IZ5i5fGe\nGeL2wyE1Atl1dMv1peW3IA11kd6tDobsdVqT/9Gp+2KXK1szOfukXE24L6it\njfRcaUxLpgMMcdaHiiVS2iy65KB/L5eJd/7UJkmI8vjM+kgRw/k="
+    - secure: "Y5N6fJLeU0Mi3xBmyviBfA52OUS7Hu9KCkM1gbVtr814Oq90a5H3FuQBPaFd\niTtU6QOVPPqgakA/N9ipboo7O2vytaYdpAprOL9k1VlinAIpdMaPs4zg1dYI\nHcTNTfCBRqN3iDbsSBwlTTMRIsdjLoLTTKNATOTpZMaxIsYRrVY="
